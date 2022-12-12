@@ -45,7 +45,7 @@ def import_and_predict(imagem, model):
 if file is None:
     st.text("Please upload an image file")
 else:
-    img = Image.open(file))
+    img = Image.open(file)
     imgcpy=img
     img = np.array(img)
     
