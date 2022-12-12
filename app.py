@@ -54,9 +54,9 @@ else:
     bw = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
     img = cv2.bitwise_not(bw_img)
     
-    st.image(imgcp, use_column_width=True)
-    st.write("After Preprocessing\n\n\n\n")
-    st.image(img, use_column_width=True)
+    st.image(imgcp, width=200)
+    #st.write("After Preprocessing...")
+    st.image(img, width=200)
     
 
 
