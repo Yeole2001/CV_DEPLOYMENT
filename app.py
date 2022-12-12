@@ -53,8 +53,8 @@ else:
     # converting to its binary form
     bw = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
     img = cv2.bitwise_not(bw_img)
-    st.image(img, use_column_width=True)
-     #si.image(imgcpy, use_column_width=True)
+    st.image(img, width=100)
+    si.image(imgcpy, width=100)
 
 
     pred = import_and_predict(img, model)
