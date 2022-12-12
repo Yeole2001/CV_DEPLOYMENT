@@ -45,18 +45,16 @@ def import_and_predict(imagem, model):
 if file is None:
     st.text("Please upload an image file")
 else:
-    img = Image.open(file)
-    imgcpy=img
-    img = np.array(img)
-    
+    img = np.array(Image.open(file))
+    imgcp=img
     img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     img = cv2.GaussianBlur(img, (7, 7), 0)
     ret, bw_img = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
     # converting to its binary form
     bw = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
     img = cv2.bitwise_not(bw_img)
-    #st.image(img, width=100)
-    si.image(imgcpy, use_column_width=True)
+    st.image(img, use_column_width=True)
+    st.image(imgcp, use_column_width=True)
 
 
     pred = import_and_predict(img, model)
