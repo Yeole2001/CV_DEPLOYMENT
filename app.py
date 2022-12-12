@@ -31,8 +31,10 @@ def import_and_predict(imagem, model):
         # #img_resize = (cv2.resize(img, dsize=(75, 75),    interpolation=cv2.INTER_CUBIC))/255.
         
         # img_reshape = img[np.newaxis,...]
+        
         in_img=[]
         image=imagem
+        imgcpy=img
         # image=np.array(image)
         original=image
         image = cv2.resize(image,(100, 120))
@@ -52,6 +54,11 @@ else:
     bw = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
     img = cv2.bitwise_not(bw_img)
     st.image(img, use_column_width=True)
+    col1, mid, col2 = st.columns([1,1,10])
+    with col1:
+        st.image(imgcpy, width=200)
+    with col2:
+        st.image(img, width=200)
 
     pred = import_and_predict(img, model)
     # score = tf.nn.softmax(predictions[0])
