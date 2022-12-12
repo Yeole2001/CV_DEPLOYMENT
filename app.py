@@ -34,7 +34,6 @@ def import_and_predict(imagem, model):
         
         in_img=[]
         image=imagem
-        imgcpy=img
         # image=np.array(image)
         original=image
         image = cv2.resize(image,(100, 120))
@@ -47,6 +46,7 @@ if file is None:
     st.text("Please upload an image file")
 else:
     img = np.array(Image.open(file))
+    imgcpy=img
     img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     img = cv2.GaussianBlur(img, (7, 7), 0)
     ret, bw_img = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
@@ -54,11 +54,8 @@ else:
     bw = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
     img = cv2.bitwise_not(bw_img)
     st.image(img, use_column_width=True)
-    col1, mid, col2 = st.columns([1,1,10])
-    with col1:
-        st.image(imgcpy, width=200)
-    with col2:
-        st.image(img, width=200)
+    si.image(imgcpy, use_column_width=True)
+
 
     pred = import_and_predict(img, model)
     # score = tf.nn.softmax(predictions[0])
